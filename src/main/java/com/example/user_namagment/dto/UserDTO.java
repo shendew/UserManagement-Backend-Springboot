@@ -7,8 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class userDTO {
+public class UserDTO {
     //data transfer object
     private int id;
     private String name;
+    private String age;
+
 }
