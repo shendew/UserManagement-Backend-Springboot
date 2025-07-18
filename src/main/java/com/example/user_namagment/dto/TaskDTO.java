@@ -5,17 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDTO {
-    //data transfer object
-    private int id;
-    private String name;
-    private int age;
-    private List<TaskDTO> tasks;
+public class TaskDTO {
+    private int task_id;
 
+    private String task_title;
+    private String task_desc;
 }

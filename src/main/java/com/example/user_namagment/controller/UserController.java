@@ -27,6 +27,11 @@ public class UserController {
         return (userService.getAllUsers());
     }
 
+    @DeleteMapping("/getuserbyid")
+    public User getUserById(@RequestBody int id){
+        return userService.findUserById(id).isPresent()?userService.findUserById(id).get():null;
+    }
+
     @PostMapping("/adduser")
     public String addUser(@RequestBody User user){
         return userService.addUser(user)?"User added":"User adding failed";

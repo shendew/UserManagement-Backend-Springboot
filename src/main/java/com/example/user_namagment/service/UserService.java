@@ -27,6 +27,12 @@ public class UserService {
         return modelMapper.map(userList,new TypeToken<List<UserDTO>>(){}.getType());
     }
 
+    public Optional<User> findUserById(Integer userId) {
+        return userRepo.findById(userId);
+    }
+
+
+
     public Boolean addUser(User user){
         userRepo.save(user);
         return true;

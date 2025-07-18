@@ -17,5 +17,4 @@ public class UserNamagmentApplication {
 		return new ModelMapper();
 	}
 
-
 }
