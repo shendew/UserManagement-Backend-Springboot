@@ -46,6 +46,10 @@ public class TaskService {
         return modified_list;
     }
 
+    public Boolean deleteTask(int taskId){
+        taskRepo.deleteById(taskId);
+        return true;
+    }
 
 
 }

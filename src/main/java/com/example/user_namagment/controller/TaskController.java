@@ -28,10 +28,7 @@ public class TaskController {
     @Autowired
     private UserRepo userRepo;
 
-    @GetMapping("/gettasts")
-    public List<Task> getAllTasks(){
-        return taskService.getAllTasks();
-    }
+
     @PostMapping("/addtask/{userId}")
     public String addTask(@PathVariable int userId,@RequestBody Task task) {
         User user = userRepo.findById(userId).orElse(null);
@@ -43,9 +40,19 @@ public class TaskController {
         return "User not found";
     }
 
+    @GetMapping("/gettasks")
+    public List<Task> getAllTasks(){
+        return taskService.getAllTasks();
+    }
+
     @PostMapping("/tasks/{userId}")
     public List<TaskDTO> getUserTasks(@PathVariable int userId) {
 
         return taskService.getTasksByUserId(userId);
+    }
+
+    @DeleteMapping("/deletetask/{taskId}")
+    public boolean deleteTask(@PathVariable int taskId){
+        return taskService.deleteTask(taskId);
     }
 }
