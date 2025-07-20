@@ -24,9 +24,16 @@ public class TaskService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public List<Task> getAllTasks(){
+    public List<TaskDTO> getAllTasks(){
         List<Task> taskList =taskRepo.findAll();
-        return modelMapper.map(taskList,new TypeToken<List<TaskDTO>>(){}.getType());
+//        return modelMapper.map(taskList,new TypeToken<List<TaskDTO>>(){}.getType());
+        List<TaskDTO> modified_list=taskList.stream().map(task -> TaskDTO.builder()
+                .task_id(task.getTask_id())
+                .task_title(task.getTask_title())
+                .task_desc(task.getTask_desc())
+                .user_id(task.getUser().getId())
+                .build()).toList();
+        return modified_list;
     }
 
     public Boolean addTask(Task task){
