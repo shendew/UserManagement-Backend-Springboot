@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -35,7 +36,14 @@ public class TaskService {
 
     public List<TaskDTO> getTasksByUserId(int userId) {
         List<Task> taskList= taskRepo.findByUser_id(userId);
-        return modelMapper.map(taskList,new TypeToken<List<TaskDTO>>(){}.getType());
+        List<TaskDTO> modified_list=taskList.stream().map(task -> TaskDTO.builder()
+                .task_id(task.getTask_id())
+                .task_title(task.getTask_title())
+                .task_desc(task.getTask_desc())
+                .user_id(task.getUser().getId())
+                .build()).toList();
+//        return modelMapper.map(taskList,new TypeToken<List<TaskDTO>>(){}.getType());
+        return modified_list;
     }
 
 

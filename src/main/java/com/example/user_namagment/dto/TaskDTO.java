@@ -14,4 +14,5 @@ public class TaskDTO {
 
     private String task_title;
     private String task_desc;
+    private int user_id;
 }
