@@ -32,7 +32,7 @@ public class UserController {
         return userService.findUserById(id).isPresent()?userService.findUserById(id).get():null;
     }
 
-    @PostMapping("/adduser")
+    @PostMapping(value="/adduser",consumes = "application/json")
     public String addUser(@RequestBody User user){
         return userService.addUser(user)?"User added":"User adding failed";
     }

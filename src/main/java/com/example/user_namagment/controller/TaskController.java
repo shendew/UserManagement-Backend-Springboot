@@ -29,7 +29,7 @@ public class TaskController {
     private UserRepo userRepo;
 
 
-    @PostMapping("/addtask/{userId}")
+    @PostMapping(value = "/addtask/{userId}",consumes = "application/json")
     public String addTask(@PathVariable int userId,@RequestBody Task task) {
         User user = userRepo.findById(userId).orElse(null);
         if (user != null) {

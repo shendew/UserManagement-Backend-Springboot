@@ -1,5 +1,6 @@
 package com.example.user_namagment.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,6 @@ public class User {
     private int age;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonManagedReference // 👈 prevents infinite recursion
+    @JsonManagedReference
     private List<Task> tasks=new ArrayList<>();
 }
